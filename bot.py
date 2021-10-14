@@ -299,8 +299,12 @@ async def photo_check(message: types.Message):
 						pass
 				for user in user_all:
 					if user.id == message.from_user.id:
-						user.bad_words += bad_words
-						user.words += len(message.caption.split())
+						if user.bad_words != None and user.words != None:
+							user.bad_words += bad_words
+							user.words += len(message.text.split())
+						else:
+							user.bad_words = 0
+							user.words = 0
 				session.commit()
 				photoid = message.photo[-1].file_id
 				await bot.send_photo(message.chat.id, photoid, caption=str(censor))
@@ -311,8 +315,12 @@ async def photo_check(message: types.Message):
 				bad_words = 0
 				for user in user_all:
 					if user.id == message.from_user.id:
-						user.bad_words += bad_words
-						user.words += len(message.text.split())
+						if user.bad_words != None and user.words != None:
+							user.bad_words += bad_words
+							user.words += len(message.text.split())
+						else:
+							user.bad_words = 0
+							user.words = 0
 				session.commit()
 	except Exception as e:
 		await bot.send_message(1218845111, 'В системе ошибка...\n<code>' + str(e) + '</code>', parse_mode='html')
@@ -347,8 +355,12 @@ async def check(message: types.Message):
 					pass
 			for user in user_all:
 				if user.id == message.from_user.id:
-					user.bad_words += bad_words
-					user.words += len(message.text.split())
+					if user.bad_words != None and user.words != None:
+						user.bad_words += bad_words
+						user.words += len(message.text.split())
+					else:
+						user.bad_words = 0
+						user.words = 0
 			session.commit()
 			try:
 				keyboard = types.InlineKeyboardMarkup()
@@ -366,8 +378,12 @@ async def check(message: types.Message):
 			bad_words = 0
 			for user in user_all:
 				if user.id == message.from_user.id:
-					user.bad_words += bad_words
-					user.words += len(message.text.split())
+					if user.bad_words != None and user.words != None:
+						user.bad_words += bad_words
+						user.words += len(message.text.split())
+					else:
+						user.bad_words = 0
+						user.words = 0
 			session.commit()
 
 		iduser = message.from_user.id
@@ -436,8 +452,12 @@ async def file_handler(message: types.Message):
 						pass
 				for user in user_all:
 					if user.id == message.from_user.id:
-						user.bad_words += bad_words
-						user.words += len(message.caption.split())
+						if user.bad_words != None and user.words != None:
+							user.bad_words += bad_words
+							user.words += len(message.text.split())
+						else:
+							user.bad_words = 0
+							user.words = 0
 				session.commit()
 				photoid = message.document.file_id
 				await bot.send_document(message.chat.id, photoid, caption=str(censor))
@@ -448,8 +468,12 @@ async def file_handler(message: types.Message):
 				bad_words = 0
 				for user in user_all:
 					if user.id == message.from_user.id:
-						user.bad_words += bad_words
-						user.words += len(message.text.split())
+						if user.bad_words != None and user.words != None:
+							user.bad_words += bad_words
+							user.words += len(message.text.split())
+						else:
+							user.bad_words = 0
+							user.words = 0
 				session.commit()
 			
 		#url_file_scan = 'https://www.virustotal.com/vtapi/v2/file/scan'
